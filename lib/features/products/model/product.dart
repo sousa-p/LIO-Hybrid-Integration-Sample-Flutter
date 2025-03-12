@@ -13,26 +13,49 @@ class Product {
     this.unitPrice,
   });
 
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      name: json['name'] as String?,
+      quantity: json['quantity'] as int?,
+      sku: json['sku'] as String?,
+      unitOfMeasure: json['unitOfMeasure'] as String?,
+      unitPrice: json['unitPrice'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'quantity': quantity,
+      'sku': sku,
+      'unitOfMeasure': unitOfMeasure,
+      'unitPrice': unitPrice,
+    };
+  }
+
   static List<Product> list() {
     return [
       Product(
-          name: "COCA-COLA LATA",
-          quantity: 1,
-          sku: "1111",
-          unitOfMeasure: "unidade",
-          unitPrice: 1),
+        name: "COCA-COLA LATA",
+        quantity: 1,
+        sku: "1111",
+        unitOfMeasure: "unidade",
+        unitPrice: 1,
+      ),
       Product(
-          name: "X-BURGUER",
-          quantity: 2,
-          sku: "2222",
-          unitOfMeasure: "unidade",
-          unitPrice: 2),
+        name: "X-BURGUER",
+        quantity: 2,
+        sku: "2222",
+        unitOfMeasure: "unidade",
+        unitPrice: 2,
+      ),
       Product(
-          name: "FANTA LATA",
-          quantity: 2,
-          sku: "3333",
-          unitOfMeasure: "unidade",
-          unitPrice: 3),
+        name: "FANTA LATA",
+        quantity: 2,
+        sku: "3333",
+        unitOfMeasure: "unidade",
+        unitPrice: 3,
+      ),
     ];
   }
 }

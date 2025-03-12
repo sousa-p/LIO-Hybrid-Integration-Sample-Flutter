@@ -29,7 +29,17 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Checkout de Venda"),
+        title: Text(
+          "Checkout de Venda",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        elevation: 16,
       ),
       body: Container(
         alignment: Alignment.center,
@@ -55,16 +65,12 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ButtonTheme(
-                height: 50.0,
-                minWidth: MediaQuery.of(context).size.width,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 58,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.tertiary,
-                    elevation: 4.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
                   child: Text(
                     "Crédito Avista",
@@ -72,23 +78,21 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
                   ),
                   onPressed: () {
                     presenter.checkout(
-                        PaymentType.creditoAVista, widget.product);
+                      PaymentType.creditoAVista,
+                      widget.product,
+                    );
                   },
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ButtonTheme(
-                height: 50.0,
-                minWidth: MediaQuery.of(context).size.width,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 58,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.tertiary,
-                    elevation: 4.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
                   child: Text(
                     "Débito Avista",
@@ -109,11 +113,12 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
             Expanded(
               flex: 1,
               child: SingleChildScrollView(
-                  child: Text(
-                message,
-                style: TextStyle(fontSize: 16.0),
-                textAlign: TextAlign.center,
-              )),
+                child: Text(
+                  message,
+                  style: TextStyle(fontSize: 16.0),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
           ],
         ),

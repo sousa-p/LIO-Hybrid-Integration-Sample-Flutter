@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
       title: 'SDK Integration',
       routerConfig: router,
       debugShowCheckedModeBanner: false,
-       theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData(
+        colorSchemeSeed: Colors.blue,
       ),
     );
   }

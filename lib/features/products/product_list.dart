@@ -15,7 +15,12 @@ class _ProductListState extends State<ProductList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Escolha um produto"),
+        title: Text(
+          "Escolha um produto",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        elevation: 16,
       ),
       body: ListView.separated(
         itemCount: items.length,
@@ -24,12 +29,13 @@ class _ProductListState extends State<ProductList> {
             title: Text(
               items[index].name ?? '',
               style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
+                color: Theme.of(context).colorScheme.secondary,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             onTap: () {
-              context.go(Routes.checkout, extra: items[index]);
+              context.push(Routes.checkout, extra: items[index]);
             },
           );
         }),

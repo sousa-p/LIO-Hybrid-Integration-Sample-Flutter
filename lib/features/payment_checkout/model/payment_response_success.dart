@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_lio_integration/features/payment_checkout/model/payment.dart';
 
-
 class PaymentCheckoutResponseSuccess {
   String? createdAt;
   String? id;
@@ -52,8 +51,7 @@ class PaymentCheckoutResponseSuccess {
             ? null
             : List<Payment>.from(
                 json["payments"].map((x) => Payment.fromMap(x))),
-        pendingAmount:
-            json["pendingAmount"],
+        pendingAmount: json["pendingAmount"],
         price: json["price"],
         reference: json["reference"],
         status: json["status"],
@@ -81,16 +79,17 @@ class PaymentCheckoutResponseSuccess {
         "updatedAt": updatedAt == null ? null : updatedAt,
       };
 }
+
 class Item {
-  String ?description;
-  String ?details;
-  String ?id;
-  String ?name;
-  int ?quantity;
-  String ?reference;
-  String ?sku;
-  String ?unitOfMeasure;
-  int ?unitPrice;
+  String? description;
+  String? details;
+  String? id;
+  String? name;
+  int? quantity;
+  String? reference;
+  String? sku;
+  String? unitOfMeasure;
+  int? unitPrice;
 
   Item({
     this.description,
@@ -116,8 +115,7 @@ class Item {
         quantity: json["quantity"],
         reference: json["reference"],
         sku: json["sku"],
-        unitOfMeasure:
-            json["unitOfMeasure"],
+        unitOfMeasure: json["unitOfMeasure"],
         unitPrice: json["unitPrice"],
       );
 
