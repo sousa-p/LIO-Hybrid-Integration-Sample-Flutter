@@ -21,14 +21,14 @@ Manager SDK.
 3. Ao término do fluxo de pagamento, o aplicativo do parceiro recebe as informações sobre o pagamento realizado atraves Deep Linking.
 
 ## Observações:
-Para fazer uso do exemplo, é necessário alterar os valores das constants, dentro de /lib/contants.dart:
+Para fazer uso do exemplo, é necessário alterar os valores das LioDeepLinkConstants, dentro de /lib/contants.dart:
 
-* ACCESS_TOKEN: Identificação do token de acesso, que armazena as regras de acesso permitidas ao Client ID. 
+* accessToken: Identificação do token de acesso, que armazena as regras de acesso permitidas ao Client ID. 
 Sua geração ocorre no momento da criação do Client ID pelo painel do desenvolvedor. 
 Seu valor pode ser visualizado clicando em ‘detalhes’ na coluna ‘Access Tokens’, dentro do menu 
 ['Client ID Cadastrados'](https://desenvolvedores.cielo.com.br/api-portal/myapps)
 
-* CLIENT_ID: Identificação de acesso. Sua geração ocorre no momento da criação pelo painel do desenvolvedor. 
+* clientId: Identificação de acesso. Sua geração ocorre no momento da criação pelo painel do desenvolvedor. 
 Seu valor pode ser visualizado na coluna Client ID, dentro do menu 
 ['Client ID Cadastrados'](https://desenvolvedores.cielo.com.br/api-portal/myapps)
 

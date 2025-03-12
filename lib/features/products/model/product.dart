@@ -1,12 +1,17 @@
 class Product {
-  final String name;
-  final int quantity;
-  final String sku;
-  final String unitOfMeasure;
-  final int unitPrice;
+  final String? name;
+  final int? quantity;
+  final String? sku;
+  final String? unitOfMeasure;
+  final int? unitPrice;
 
-  Product(
-      {this.name, this.quantity, this.sku, this.unitOfMeasure, this.unitPrice});
+  Product({
+    this.name,
+    this.quantity,
+    this.sku,
+    this.unitOfMeasure,
+    this.unitPrice,
+  });
 
   static List<Product> list() {
     return [

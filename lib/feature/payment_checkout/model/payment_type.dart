@@ -1,1 +1,0 @@
-enum PaymentType { CREDITO_AVISTA, DEBITO_AVISTA }

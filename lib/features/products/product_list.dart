@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lio_integration/feature/products/model/product.dart';
-import 'package:flutter_lio_integration/routes.dart';
+import 'package:flutter_lio_integration/features/products/model/product.dart';
+import 'package:flutter_lio_integration/routing/routes.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductList extends StatefulWidget {
   @override
@@ -21,14 +22,14 @@ class _ProductListState extends State<ProductList> {
         itemBuilder: ((context, index) {
           return ListTile(
             title: Text(
-              items[index].name,
+              items[index].name ?? '',
               style: TextStyle(
                   color: Colors.blue,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.pushNamed(context, checkout, arguments: items[index]);
+              context.go(Routes.checkout, extra: items[index]);
             },
           );
         }),

@@ -1,26 +1,26 @@
 import 'dart:convert';
 
-import 'package:flutter_lio_integration/feature/payment_checkout/model/payment_fields.dart';
+import 'package:flutter_lio_integration/features/payment_checkout/model/payment_fields.dart';
 
 class Payment {
-  String accessKey;
-  int amount;
-  String applicationName;
-  String authCode;
-  String brand;
-  String cieloCode;
-  String description;
-  int discountedAmount;
-  String externalId;
-  String id;
-  int installments;
-  String mask;
-  String merchantCode;
-  PaymentFields paymentFields;
-  String primaryCode;
-  String requestDate;
-  String secondaryCode;
-  String terminal;
+  String? accessKey;
+  int? amount;
+  String? applicationName;
+  String? authCode;
+  String? brand;
+  String? cieloCode;
+  String? description;
+  int? discountedAmount;
+  String? externalId;
+  String? id;
+  int? installments;
+  String? mask;
+  String? merchantCode;
+  PaymentFields? paymentFields;
+  String? primaryCode;
+  String? requestDate;
+  String? secondaryCode;
+  String? terminal;
 
   Payment({
     this.accessKey,
@@ -82,17 +82,12 @@ class Payment {
         "installments": installments,
         "mask": mask,
         "merchantCode": merchantCode,
-        "paymentFields": paymentFields.toMap(),
+        "paymentFields": (paymentFields != null) ? paymentFields!.toMap() : {},
         "primaryCode": primaryCode,
         "requestDate": requestDate,
         "secondaryCode": secondaryCode,
         "terminal": terminal,
       };
 
-  String toBase64Encode() => covertToBase64();
-
-  covertToBase64() {
-    List encodedText = utf8.encode(toJson());
-    return base64.encode(encodedText);
-  }
+  String toBase64Encode() => base64Encode(utf8.encode(toJson()));
 }

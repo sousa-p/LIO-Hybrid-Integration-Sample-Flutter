@@ -1,20 +1,20 @@
-import 'package:flutter_lio_integration/feature/payment_checkout/model/Payment_request.dart';
-import 'package:flutter_lio_integration/feature/payment_checkout/model/payment.dart';
+import 'package:flutter_lio_integration/features/payment_checkout/model/Payment_request.dart';
+import 'package:flutter_lio_integration/features/payment_checkout/model/payment.dart';
 
 class Order {
-  String createdAt;
-  String id;
-  List<Item> items;
-  String notes;
-  String number;
-  int paidAmount;
-  List<Payment> payments;
-  int pendingAmount;
-  int price;
-  String reference;
-  String status;
-  String type;
-  String updatedAt;
+  String? createdAt;
+  String? id;
+  List<Item>? items;
+  String? notes;
+  String? number;
+  int? paidAmount;
+  List<Payment>? payments;
+  int? pendingAmount;
+  int? price;
+  String? reference;
+  String? status;
+  String? type;
+  String? updatedAt;
 
   Order({
     this.createdAt,
@@ -39,8 +39,11 @@ class Order {
         notes: json["notes"],
         number: json["number"],
         paidAmount: json["paidAmount"],
-        payments:
-            List<Payment>.from(json["payments"].map((x) => Payment.fromMap(x))),
+        payments: List<Payment>.from(
+          json["payments"].map(
+            (x) => Payment.fromMap(x),
+          ),
+        ),
         pendingAmount: json["pendingAmount"],
         price: json["price"],
         reference: json["reference"],
@@ -52,16 +55,20 @@ class Order {
   Map<String, dynamic> toMap() => {
         "createdAt": createdAt,
         "id": id,
-        "items": List<dynamic>.from(items.map((x) => x.toMap())),
         "notes": notes,
         "number": number,
         "paidAmount": paidAmount,
-        "payments": List<dynamic>.from(payments.map((x) => x.toMap())),
         "pendingAmount": pendingAmount,
         "price": price,
         "reference": reference,
         "status": status,
         "type": type,
         "updatedAt": updatedAt,
+        "items": (items != null)
+            ? List<dynamic>.from(items!.map((x) => x.toMap()))
+            : null,
+        "payments": (payments != null)
+            ? List<dynamic>.from(payments!.map((x) => x.toMap()))
+            : null,
       };
 }

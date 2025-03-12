@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lio_integration/feature/payment_checkout/model/payment_type.dart';
-import 'package:flutter_lio_integration/feature/payment_checkout/payment_checkout_presenter.dart';
-import 'package:flutter_lio_integration/feature/payment_checkout/payment_checkout_view.dart';
-import 'package:flutter_lio_integration/feature/products/model/product.dart';
+import 'package:flutter_lio_integration/features/payment_checkout/model/payment_type.dart';
+import 'package:flutter_lio_integration/features/payment_checkout/payment_checkout_presenter.dart';
+import 'package:flutter_lio_integration/features/payment_checkout/payment_checkout_view.dart';
+import 'package:flutter_lio_integration/features/products/model/product.dart';
 
 class PaymentCheckoutScreen extends StatefulWidget {
   final Product product;
 
-  const PaymentCheckoutScreen({Key key, this.product}) : super(key: key);
+  const PaymentCheckoutScreen({super.key, required this.product});
 
   @override
-  _PaymentCheckoutScreenState createState() => _PaymentCheckoutScreenState();
+  State<PaymentCheckoutScreen> createState() => _PaymentCheckoutScreenState();
 }
 
 class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
     implements PaymentCheckoutView {
-  PaymentCheckoutPresenter presenter;
+  late PaymentCheckoutPresenter presenter;
   String message = "";
 
   @override
   void initState() {
     super.initState();
     presenter = PaymentCheckoutPresenter(this.widget.product);
-    presenter.setView(this);
     presenter.startListener();
   }
 
@@ -30,16 +29,17 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter-LIO"),
+        title: Text("Checkout de Venda"),
       ),
       body: Container(
+        alignment: Alignment.center,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
             ),
             Text(
-              widget.product.name,
+              widget.product.name ?? '',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -49,7 +49,7 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
             SizedBox(
               height: 10,
             ),
-            Text("Preço: R\$ ${widget.product.unitPrice.roundToDouble()}"),
+            Text("Preço: R\$ ${widget.product.unitPrice?.roundToDouble()}"),
             SizedBox(
               height: 10,
             ),
@@ -58,12 +58,13 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
               child: ButtonTheme(
                 height: 50.0,
                 minWidth: MediaQuery.of(context).size.width,
-                child: RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  textColor: Colors.white,
-                  elevation: 4.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(50.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.tertiary,
+                    elevation: 4.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                   ),
                   child: Text(
                     "Crédito Avista",
@@ -71,7 +72,7 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
                   ),
                   onPressed: () {
                     presenter.checkout(
-                        PaymentType.CREDITO_AVISTA, widget.product);
+                        PaymentType.creditoAVista, widget.product);
                   },
                 ),
               ),
@@ -81,12 +82,13 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
               child: ButtonTheme(
                 height: 50.0,
                 minWidth: MediaQuery.of(context).size.width,
-                child: RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  textColor: Colors.white,
-                  elevation: 4.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(50.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.tertiary,
+                    elevation: 4.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                   ),
                   child: Text(
                     "Débito Avista",
@@ -94,7 +96,9 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
                   ),
                   onPressed: () {
                     presenter.checkout(
-                        PaymentType.DEBITO_AVISTA, widget.product);
+                      PaymentType.debitoAVista,
+                      widget.product,
+                    );
                   },
                 ),
               ),
@@ -106,10 +110,10 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
               flex: 1,
               child: SingleChildScrollView(
                   child: Text(
-                    message,
-                    style: TextStyle(fontSize: 16.0),
-                    textAlign: TextAlign.center,
-                  )),
+                message,
+                style: TextStyle(fontSize: 16.0),
+                textAlign: TextAlign.center,
+              )),
             ),
           ],
         ),
@@ -119,8 +123,7 @@ class _PaymentCheckoutScreenState extends State<PaymentCheckoutScreen>
 
   @override
   void showMessage(String message) {
-    setState(() {
-      this.message = message;
-    });
+    this.message = message;
+    setState(() {});
   }
 }
