@@ -45,6 +45,8 @@ Seu valor pode ser visualizado na coluna Client ID, dentro do menu
 ## Libs Auxiliares
 Foi necessário o uso das bibliotecas auxiliares:
 
-Url_Launcher - [url_launcher](https://pub.dev/packages/url_launcher#-readme-tab-)
+App_Links - [api_links](https://pub.dev/packages/uni_links) 
 
-Uni_Links - [uni_links](https://pub.dev/packages/uni_links) 
+Url_Launcher - [url_launcher](https://pub.dev/packages/url_launcher)
+
+Go_Router - [go_router](https://pub.dev/packages/go_router)
