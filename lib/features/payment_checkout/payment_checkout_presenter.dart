@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:app_links/app_links.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_lio_integration/features/payment_checkout/model/Payment_request.dart';
 import 'package:flutter_lio_integration/features/payment_checkout/model/payment_type.dart';
-import 'package:flutter_lio_integration/features/payment_checkout/payment_checkout_view.dart';
 import 'package:flutter_lio_integration/features/products/model/product.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'model/payment_response.dart';
 import 'model/payment_response_success.dart';
 
 class PaymentCheckoutPresenter {
-  PaymentCheckoutView view;
   final Product product;
+  final message = ValueNotifier<String>('');
 
-  PaymentCheckoutPresenter(this.product) : view = PaymentCheckoutView();
+  PaymentCheckoutPresenter(this.product);
 
   Future<void> checkout(PaymentType paymentType, Product product) async {
     final payment = PaymentRequest.makeOrder(paymentType, product);
@@ -25,15 +25,16 @@ class PaymentCheckoutPresenter {
       await launchUrl(uri);
       return;
     }
-    view.showMessage('Erro: App URI não instalado.');
+
+    message.value = "Erro: App URI não instalado.";
   }
 
   void onFailure(PaymentCheckoutResponse response) {
-    view.showMessage(response.toJson());
+    message.value = response.toJson();
   }
 
   void onSuccess(PaymentCheckoutResponseSuccess response) {
-    view.showMessage(response.toJson());
+    message.value = response.toJson();
   }
 
   final AppLinks _appLinks = AppLinks();
